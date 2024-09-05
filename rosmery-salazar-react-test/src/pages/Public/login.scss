@@ -21,11 +21,12 @@
 }
 
 .greeting-heading{
-    color: white;
+    color: #{$secondary};
     margin: 0;
 }
 h1.greeting-heading{
     font-size: 3.5rem;
+    color: #{$dark};
 }
 #button-container{
     display: flex;
@@ -39,7 +40,7 @@ h1.greeting-heading{
     width: 70% ;
     border-radius: 5px;
     border-style: none;    
-    background-color: rgb(255, 255, 255) ;
+    background-color: #{$dark} ;
     color: #{$primary};    
     font-size: 25px;
     font-weight: bold;

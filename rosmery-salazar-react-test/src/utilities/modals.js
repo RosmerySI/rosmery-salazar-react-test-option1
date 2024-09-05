@@ -13,7 +13,7 @@ export const modalCharging = () => {
 export const modalSuccess = (message) => {
   Swal.fire({
     icon: "success",
-    title: 'La acción se realizó con éxito.',
+    title: 'The action succeed.',
     text: message ? message : "",
     showConfirmButton: false,
     timer: 2000,
@@ -30,7 +30,7 @@ export const modalError = (message) => {
 export const modalInfo = (message) => {
   Swal.fire({
     icon: "info",
-    title: "Información",
+    title: "Information",
     text: message ? message : '',
   });
 };

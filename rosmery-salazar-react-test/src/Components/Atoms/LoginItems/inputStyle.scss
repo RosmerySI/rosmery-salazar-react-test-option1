@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .input-container{
     display: flex;
     flex-direction: column;
@@ -27,11 +29,11 @@ img {
    
 }
 label{
-    color: white;
+    color: #{$secondary};
 }
 
 span{
-    color: white;
+    color: black;
     margin:5px;
     text-decoration: underline;
     text-decoration-color:red ;

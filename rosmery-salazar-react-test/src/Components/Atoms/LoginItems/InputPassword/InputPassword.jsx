@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import show from '../../../../assets/images/show.png';
-import hide from '../../../../assets/images/show.png';
+import hide from '../../../../assets/images/hide.png';
 import '../inputStyle.scss'
 
 export const InputPassword = ({ label, id, value, onChange, error }) => {
@@ -12,7 +12,7 @@ export const InputPassword = ({ label, id, value, onChange, error }) => {
     <div className='input-container'>
       <label htmlFor="">{label}</label>   
       <input
-        type="password"
+        type={shownPassword ? 'password' : "text"}
         placeholder='Password'
         id={id}
         value={value}

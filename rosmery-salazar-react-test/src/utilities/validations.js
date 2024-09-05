@@ -8,7 +8,7 @@ export const ValidationNumbers = (string) => {
   
   export const ValidationPassword = (string) => {
     if (
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,}$/.test(
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[#?!@$%^&*-.]).{6,12}$/.test(
         string
       )
     ) {
