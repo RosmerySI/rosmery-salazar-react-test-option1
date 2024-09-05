@@ -3,6 +3,7 @@ import '../inputStyle.scss'
 
 export const InputEmail = ({ id, value, onChange, error }) => {
   return (
+    <>
     <div className='input-container'>
       <label htmlFor="">Email:</label>
       <input
@@ -12,13 +13,15 @@ export const InputEmail = ({ id, value, onChange, error }) => {
         id={id}
         onChange={onChange}
       />
-      {
+      
+    </div>
+    {
         error?.value &&
         <>
 
           <span>{error?.message}</span>
         </>
       }
-    </div>
+    </>
   );
 };

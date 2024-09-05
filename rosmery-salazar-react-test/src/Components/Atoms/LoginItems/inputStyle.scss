@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 14%;
+    position: relative;
 }
 
 input{
@@ -12,11 +13,18 @@ input{
     padding-left: 10px;
    
 }
-img {  
-    width: 50px;
-    cursor: pointer;
-   
+.image-container{
     
+    position: absolute; 
+    right: 1px;
+    top:35px;
+
+}
+img {  
+    width: 30px;
+    height: 30px;
+    cursor: pointer;  
+   
 }
 label{
     color: white;
@@ -28,3 +36,9 @@ span{
     text-decoration: underline;
     text-decoration-color:red ;
 }
+
+.password-container{
+   display: flex;
+   flex-direction: row;
+}
+

@@ -1,34 +1,33 @@
 import React, { useState } from 'react';
-// import show from '../../../../assets/images/show.png';
-// import hide from '../../../../assets/images/show.png';
+import show from '../../../../assets/images/show.png';
+import hide from '../../../../assets/images/show.png';
 import '../inputStyle.scss'
 
 export const InputPassword = ({ label, id, value, onChange, error }) => {
 
-  // const [shownPassword, setShownPassword] = useState(true)
+  const [shownPassword, setShownPassword] = useState(true)
 
   return (
+    <>
     <div className='input-container'>
-      <label htmlFor="">{label}</label>      
-        <input
-          type="password"
-          placeholder='Password'
-          id={id}
-          value={value}
-          onChange={onChange}
-          //autoComplete='off'
-           />
-        {
-          error?.value &&
-          <>
-            <span>{error?.message}</span>
-          </>
-        }
-  
-    {/* <img onClick={() => setShownPassword(!shownPassword)} src={!shownPassword ? show : hide} /> */}
-     
-      
-
+      <label htmlFor="">{label}</label>   
+      <input
+        type="password"
+        placeholder='Password'
+        id={id}
+        value={value}
+        onChange={onChange}      
+      />     
+      <div className='image-container'>
+        <img onClick={() => setShownPassword(!shownPassword)} src={!shownPassword ? show : hide} />
+      </div>
     </div>
+    {
+      error?.value &&
+      <div>
+        <span>{error?.message}</span>
+      </div>
+    }
+    </>
   );
 };
