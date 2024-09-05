@@ -4,10 +4,10 @@ import { InputPassword } from '../../Components/Atoms/LoginItems/InputPassword/I
 import { modalError, modalInfo, modalSuccess } from '../../utilities/modals';
 import { ErrorsMessages, SubmitValidation, UpdateValue } from '../../utilities/validations';
 import { useNavigate } from 'react-router-dom';
-import { useStoreUser } from '../'
+import  {useStoreUser}  from '../../hooks/useStoreUser.js'
 import './login.scss';
 
-export const Login = ({setAuth}) => {
+export const Login = () => {
 
     const [inputList, setInputList] = useState({
         email: { value: 'rosmery.salazar0507@gmail.com', validationType: 'email', selected: false },
@@ -41,7 +41,7 @@ export const Login = ({setAuth}) => {
                 email: inputList.email.value,
                 password: inputList.password.value
             }
-            startLoginWithEmailPassword(form, setAuth, navigate);
+            startLoginWithEmailPassword(form, navigate);
         } else {
             modalInfo('Enter your email and password')
         }

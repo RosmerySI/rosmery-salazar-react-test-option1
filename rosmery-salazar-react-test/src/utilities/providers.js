@@ -1,20 +1,14 @@
 
-import api from "../api/Api";
+import axios from "axios";
 
-
-
-
-export const getData = async () => {
-    console.log('get data')
+export const getData = async () => {  
     
     try {
-        const response = await api.get('/api/products/1');
+        const response = await axios.get('/api/products/1');
         console.log(response); 
         
     } catch (error) {
         console.log(error)
-    //   let status = error.response.status;
-    //   let variable = error.response.data;
-    //   manageError(status, variable);
+    
     }
   };
