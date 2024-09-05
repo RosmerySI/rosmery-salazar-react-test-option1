@@ -1,12 +1,23 @@
+import { useState } from "react"
+import { Private } from "./routes/private/Private"
+import { Public } from "./routes/public/Public"
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [auth, setAuth] = useState(false)
+
 
   return (
     <>
-      <h1>Hello</h1>
+      {
+        auth
+          ?
+          <Private auth={auth} setAuth={setAuth} />
+          :
+          <Public auth={auth} setAuth={setAuth} />
+      }
     </>
   )
 }

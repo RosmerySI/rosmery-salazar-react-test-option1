@@ -1,0 +1,34 @@
+import React, { useState } from 'react';
+// import show from '../../../../assets/images/show.png';
+// import hide from '../../../../assets/images/show.png';
+import '../inputStyle.scss'
+
+export const InputPassword = ({ label, id, value, onChange, error }) => {
+
+  // const [shownPassword, setShownPassword] = useState(true)
+
+  return (
+    <div className='input-container'>
+      <label htmlFor="">{label}</label>      
+        <input
+          type="password"
+          placeholder='Password'
+          id={id}
+          value={value}
+          onChange={onChange}
+          //autoComplete='off'
+           />
+        {
+          error?.value &&
+          <>
+            <span>{error?.message}</span>
+          </>
+        }
+  
+    {/* <img onClick={() => setShownPassword(!shownPassword)} src={!shownPassword ? show : hide} /> */}
+     
+      
+
+    </div>
+  );
+};

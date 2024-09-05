@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+
+#login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:#{$primary} ;
+    height: 70vh;
+    width: 40vw;
+    border-radius: 5%;   
+
+}
+.items-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;    
+    width: 80%;
+    height: 90%;
+}
+
+.greeting-heading{
+    color: white;
+    margin: 0;
+}
+h1.greeting-heading{
+    font-size: 3.5rem;
+}
+#button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+#login-button{
+    margin:auto;
+    height: 100%;
+    width: 70% ;
+    border-radius: 5px;
+    border-style: none;
+    background-color: rgb(255, 179, 0) ;
+    color: #{$secondary};    
+    font-size: 18px;
+    font-weight: bold;
+
+    
+}

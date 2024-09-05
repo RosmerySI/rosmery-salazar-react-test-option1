@@ -1,0 +1,30 @@
+.input-container{
+    display: flex;
+    flex-direction: column;
+    height: 14%;
+}
+
+input{
+    border-radius: 5px;
+    border-style: none;
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+   
+}
+img {  
+    width: 50px;
+    cursor: pointer;
+   
+    
+}
+label{
+    color: white;
+}
+
+span{
+    color: white;
+    margin:5px;
+    text-decoration: underline;
+    text-decoration-color:red ;
+}
