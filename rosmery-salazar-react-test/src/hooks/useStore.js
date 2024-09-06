@@ -2,14 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalError } from "../utilities/modals";
 import { onLogin } from "../store/authSlice";
 import { onAddingNewProduct } from "../store/newProductSlice";
-import { createData } from "../utilities/providers";
+import { createData, readData } from "../utilities/providers";
+import { onGettingProducts } from "../store/productsSlice";
 
 
 
 export const useStore = () => {
 
     const { status} = useSelector((state) => state.auth);
-    const { data } = useSelector((state) => state.newProduct);  
+    const { newProduct } = useSelector((state) => state.newProduct);  
+    const { products } = useSelector((state) => state.products);  
   
     const dispatch = useDispatch();
 
@@ -36,28 +38,35 @@ export const useStore = () => {
             modalError('This user does not have authorization')
         }
     }
+    
 
-    const startLogout = (setAuth) => {
-        dispatch(onLogout());
-        localStorage.clear();
-        setAuth(false)
-    };
+    const startGettingProducts = async () => {
+        const results = await readData()        
+        dispatch(onGettingProducts(results));
+       
+    }
 
     const startAddingNewProduct = async (form, navigate) => {
         createData(form)
         dispatch(onAddingNewProduct(form));
         navigate('/products');
     }
-
+    const startLogout = (setAuth) => {
+        dispatch(onLogout());
+        localStorage.clear();
+        setAuth(false)
+    };
     return {
         //* Propierties
         status,
-        data,
+        products,
+        newProduct,
 
         //*methods
         startLoginWithEmailPassword,
         startLogout,
         startAddingNewProduct,
+        startGettingProducts,
 
     };
 

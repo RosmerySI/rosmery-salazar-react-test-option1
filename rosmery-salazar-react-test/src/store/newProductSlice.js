@@ -3,12 +3,12 @@ export const newProductSlice = createSlice({
   name: 'newProduct',
     initialState: {
         status: 'not added',     
-        data:{}
+        newProduct:{}
     },
     reducers: {
         onAddingNewProduct: ( state, { payload } ) => {
             state.status = 'added';
-            state.data=payload;           
+            state.newProduct=payload;           
             localStorage.setItem('newProduct', JSON.stringify(state,payload));       
         },
        

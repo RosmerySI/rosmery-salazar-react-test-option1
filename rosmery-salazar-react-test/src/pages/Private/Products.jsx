@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
-import {readData} from '../../utilities/providers';
 import { DataTable, TableSearch, TablePagination } from '../../Components/Atoms/TableItems';
-import { columns, initialRows } from '../../utilities/tableData';
 import { TableHeader } from '../../Components/Atoms/TableItems/TableHeader';
-
+import { useStore } from '../../hooks/useStore';
+import{columns} from '../../utilities/tableData'
 
 export const Products = () => {
-  
-  const [rows, setRows] = useState(initialRows);
+
+  const {products,startGettingProducts} = useStore()
+
+  const [rows, setRows] = useState(products);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
 
+
   useEffect(() => {
-    readData()
-  }, []);
+    startGettingProducts()   
+  }, [rows]);
 
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setSearch(searchValue);
-    const filtered = initialRows.filter(row =>
-      row.instrumentName.toLowerCase().includes(searchValue)
+    const filtered = rows.filter(row =>
+      row.title.toLowerCase().includes(searchValue)
     );
     setRows(filtered);
   };
@@ -30,7 +32,7 @@ export const Products = () => {
   };
 
   const pageSize = 5;
-  const paginatedRows = rows?.slice((page - 1) * pageSize, page * pageSize);
+  // const paginatedRows =rows?.slice((page - 1) * pageSize, page * pageSize);
 
   return (
     <>
@@ -39,7 +41,7 @@ export const Products = () => {
 
         <TableSearch search={search} handleSearch={handleSearch} />
 
-        <DataTable paginatedRows={paginatedRows} columns={columns} pageSize={pageSize} />
+        <DataTable paginatedRows={rows} columns={columns} pageSize={pageSize} />
 
         <TablePagination rows={rows} pageSize={pageSize} page={page} handlePageChange={handlePageChange} />
       </Paper>
