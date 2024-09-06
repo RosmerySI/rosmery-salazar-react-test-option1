@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
-import { getData } from '../../utilities/providers';
+import {readData} from '../../utilities/providers';
 import { DataTable, TableSearch, TablePagination } from '../../Components/Atoms/TableItems';
 import { columns, initialRows } from '../../utilities/tableData';
 import { TableHeader } from '../../Components/Atoms/TableItems/TableHeader';
@@ -13,7 +13,7 @@ export const Products = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    getData()
+    readData()
   }, []);
 
   const handleSearch = (e) => {

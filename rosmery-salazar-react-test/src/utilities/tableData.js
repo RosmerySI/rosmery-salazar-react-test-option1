@@ -1,26 +1,26 @@
 export const columns = [
-    { field: 'id', headerName: 'ID', width: 70, sortable: true },
-    { field: 'instrumentName', headerName: 'Instrument Name ', width: 150, sortable: true },
-    { field: 'brand', headerName: 'Brand', width: 150, sortable: true },
-    { field: 'type', headerName: 'Type', width: 200, sortable: true },
-    { field: 'price', headerName: 'Price ($)', type: 'number', width: 110, sortable: true },
-    {
-      field: 'fullDetails', headerName: 'Full Details', width: 300, sortable: true,
+ 
+  { field: 'title', headerName: 'Name', width: 180, sortable: true },
+  { field: 'description', headerName: 'Description', width: 250, sortable: true },
+  { field: 'category', headerName: 'Category', width: 150, sortable: true },
+  { field: 'price', headerName: 'Price ($)',  width: 150, sortable: true ,type: 'number'},
+  {
+      field: 'details', headerName: 'Details', width: 300, sortable: true,
       valueGetter: (params) => {
-        if (!params?.row) return '';
-        return `${params.row?.instrumentName || ''} by ${params.row?.brand || ''} (${params.row?.type || ''})`;
+          if (!params?.row) return '';
+          return `${params.row?.title || ''}: ${params.row?.description || ''} (${params.row?.category || ''})`;
       },
-    },
-  ];
-  
-export  const initialRows = [
-    { id: 1, type: 'Stratocaster', brand: 'Fender', instrumentName: 'Electric Guitar', price: 1200 },
-    { id: 2, type: 'Les Paul', brand: 'Gibson', instrumentName: 'Electric Guitar', price: 1500 },
-    { id: 3, type: 'Precision Bass', brand: 'Fender', instrumentName: 'Bass Guitar', price: 900 },
-    { id: 4, type: 'D-28', brand: 'Martin', instrumentName: 'Acoustic Guitar', price: 2500 },
-    { id: 5, type: 'YFL-222', brand: 'Yamaha', instrumentName: 'Flute', price: 400 },
-    { id: 6, type: 'Korg Kronos', brand: 'Korg', instrumentName: 'Keyboard', price: 3000 },
-    { id: 7, type: 'DW Collector’s Series', brand: 'DW', instrumentName: 'Drum Set', price: 5000 },
-    { id: 8, type: 'C5', brand: 'Cordoba', instrumentName: 'Classical Guitar', price: 500 },
-    { id: 9, type: 'Nord Stage 3', brand: 'Nord', instrumentName: 'Keyboard', price: 3500 },
-  ];
+  },
+];
+
+export const initialRows = [
+  { id: 1, title: 'MacBook Pro', description: 'Apple 16-inch laptop', category: 'Electronic', price: 2400 },
+  { id: 2, title: 'Samsung Galaxy S21', description: 'Samsung flagship smartphone', category: 'Electronic', price: 999 },
+  { id: 3, title: 'Sony WH-1000XM4', description: 'Noise-cancelling headphones', category: 'Electronic', price: 350 },
+  { id: 4, title: 'LG OLED CX', description: '4K OLED TV', category: 'Electronic', price: 1800 },
+  { id: 5, title: 'PlayStation 5', description: 'Sony gaming console', category: 'Electronic', price: 499 },
+  { id: 6, title: 'NVIDIA RTX 3080', description: 'Graphics card for gaming', category: 'Electronic', price: 699 },
+  { id: 7, title: 'Apple Watch Series 6', description: 'Smartwatch with fitness tracking', category: 'Electronic', price: 399 },
+  { id: 8, title: 'GoPro HERO9', description: 'Action camera', category: 'Electronic', price: 449 },
+  { id: 9, title: 'Amazon Echo', description: 'Smart speaker with Alexa', category: 'Electronic', price: 99 },
+];

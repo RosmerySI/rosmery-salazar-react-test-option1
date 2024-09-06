@@ -3,7 +3,7 @@ import { Input } from '../../Components/Atoms/InputItem/Input.jsx';
 import { modalError, modalInfo, modalSuccess } from '../../utilities/modals';
 import { ErrorsMessages, SubmitValidation, UpdateValue } from '../../utilities/validations';
 import { useNavigate } from 'react-router-dom';
-import  {useStoreUser}  from '../../hooks/useStoreUser.js'
+import  {useStore}  from '../../hooks/useStore.js'
 import '../pagesStyle.scss';
 
 export const Login = () => {
@@ -21,7 +21,7 @@ export const Login = () => {
         confirmPassword: { value: false, message:'Six to twelve characters containing an uppercase letter, a lowercase letter, a number and a special character' }
     })
 
-    const{startLoginWithEmailPassword} = useStoreUser();
+    const{startLoginWithEmailPassword} = useStore();
 
     useEffect(() => {
         ErrorsMessages(inputList, errorList, setErrorList)

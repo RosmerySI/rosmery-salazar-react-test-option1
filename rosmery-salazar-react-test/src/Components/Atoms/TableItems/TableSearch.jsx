@@ -4,7 +4,7 @@ import React from 'react';
 export const TableSearch = ({search,handleSearch}) => {
   return (
     <TextField
-          label="Search instruments"
+          label="Search electronics"
           variant="outlined"
           fullWidth
           value={search}

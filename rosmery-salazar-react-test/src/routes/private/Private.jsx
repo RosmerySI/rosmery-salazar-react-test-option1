@@ -1,9 +1,10 @@
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes} from 'react-router-dom';
 import { Products } from '../../pages/Private/Products';
 import { NewProduct } from '../../pages/Private/NewProduct';
 
-export const Private = ({auth,setAuth}) => {
+export const  Private = ({auth,setAuth}) => {
+  
   return (
     <div id='public-container'>
     <Routes>

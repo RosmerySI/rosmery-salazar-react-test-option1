@@ -1,34 +1,33 @@
-// import { loginWithEmailPassword } from "../../utilities/providers";
-// import { getDocFirestore } from "../../utilities/firebaseDB";
 import { useDispatch, useSelector } from "react-redux";
-import { modalCharging, modalError } from "../utilities/modals";
+import { modalError } from "../utilities/modals";
 import { onLogin } from "../store/authSlice";
+import { onAddingNewProduct } from "../store/newProductSlice";
+import { createData } from "../utilities/providers";
 
 
 
+export const useStore = () => {
 
-export const useStoreUser = () => {
-
-
-    const { status, dataBackend } = useSelector((state) => state.auth);
-    // const { dataUsers } = useSelector((state) => state.users);  
-    // const { editUser } = useSelector((state) => state.editusers);
-    // const { dataRoles } = useSelector((state) => state.roles);  
-
+    const { status} = useSelector((state) => state.auth);
+    const { data } = useSelector((state) => state.newProduct);  
+  
     const dispatch = useDispatch();
 
     const startLoginWithEmailPassword = async (form, navigate) => {
 
-        const validationEmail = 'rosmery.salazar0507@gmail.com'
-        const validationPassword = 'Rosmery123.'
+        const validation = {
+            email: 'rosmery.salazar0507@gmail.com',
+            password: 'Rosmery123.'
+        }
 
-        if (form.email === validationEmail && form.password === validationPassword) {
+
+        if (form.email === validation.email && form.password === validation.password) {
             const authData = {
                 email: form.email,
                 status: 'authenticated',
             };
             localStorage.setItem('authState', JSON.stringify(authData));
-            dispatch(onLogin());            
+            dispatch(onLogin());
             navigate('/products');
         } else {
             let status = error.response?.status;
@@ -38,22 +37,27 @@ export const useStoreUser = () => {
         }
     }
 
-
     const startLogout = (setAuth) => {
-
         dispatch(onLogout());
         localStorage.clear();
         setAuth(false)
     };
 
+    const startAddingNewProduct = async (form, navigate) => {
+        createData(form)
+        dispatch(onAddingNewProduct(form));
+        navigate('/products');
+    }
+
     return {
         //* Propierties
         status,
-        dataBackend,
+        data,
 
         //*methods
         startLoginWithEmailPassword,
         startLogout,
+        startAddingNewProduct,
 
     };
 

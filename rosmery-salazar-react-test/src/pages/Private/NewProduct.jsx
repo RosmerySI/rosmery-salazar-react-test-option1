@@ -4,6 +4,8 @@ import { useForm } from '../../hooks/useForm';
 import { modalError } from '../../utilities/modals';
 import ProductImage from '../../services/ProductImage/ProductImage';
 import GetImage from '../../services/GetImage/GetImage';
+import { useStore } from '../../hooks/useStore';
+import { useNavigate } from 'react-router-dom';
 import '../../pages/pagesStyle.scss';
 
 export const NewProduct = () => {
@@ -14,43 +16,46 @@ export const NewProduct = () => {
     type: '',
     price: ''
   })
+  const [image, setImage] = useState(() => {    
+    const savedImage = localStorage.getItem('productImage');
+    return savedImage ? savedImage : null; 
+  });
 
-  const [avatar, setAvatar] = useState();
-  const updateAvatar = (avatar) => {
-    setAvatar(avatar);
+  const updateImage = (image) => {
+    setImage(image);
 
 };
+ const{startAddingNewProduct}=useStore()
 
   const nameForm = /^[A-Z][a-zA-Z\s!@#$%^&*()-_+=<>?]{1,}$/;
   const descriptionForm = /^[A-Z][a-zA-Z\s!@#$%^&*()-_+=<>?]{1,}$/;
-  const priceForm = /^(1[1-9]|[3-9][0-9]|\d{3,})$/;
-  const typeForm = /^[A-Z][a-zA-Z\s!@#$%^&*()-_+=<>?]{1,}$/;
+  const priceForm = /^(9[0-9]|[3-9][0-9]|\d{3,})$/;
 
   const formValidations = {
     name: [(value) => value.match(nameForm), 'Start with upercase letter and have more than one.'],
     description: [(value) => value.match(descriptionForm), 'Start with upercase letter and have more than one.'],
-    type: [(value) => value.match(typeForm), 'Start with upercase letter and have more than one.'],
-    price: [(value) => value.match(priceForm), 'Add a number bigger than 10 '],
+    price: [(value) => value.match(priceForm), 'Add a number bigger than 90 '],
   }
-  const { name, description, type, price, onInputChange, nameValid, descriptionValid, typeValid, priceValid } = useForm(formData, formValidations);
-
+  const { name, description, price, onInputChange, nameValid, descriptionValid, priceValid } = useForm(formData, formValidations);
+  const navigate =  useNavigate()
   const handleSubmit = (e) => {
-    console.log(nameValid, descriptionValid, typeValid, priceValid);
+    console.log(nameValid, descriptionValid, priceValid);
     e.preventDefault();
-    if (nameValid === null && descriptionValid === null &&
-      typeValid === null && priceValid === null) {
+    if (nameValid === null && descriptionValid === null && priceValid === null) {
 
       const newProductForm = {
+        id:name,
         title: name,
         price: price,
         description: description,
         image: image,
-        category: '',
-
-      }
-      console.log(newProductForm)
+        category: 'Electronic',
+      }      
+      localStorage.setItem("productImage", image)
+      startAddingNewProduct(newProductForm,navigate)
+      
     } else {
-      modalError('You must complete the form.Start with upercase letter and have more than one. Also add a three digit number and bigger than zero')
+      modalError('You must complete the form. Add a word with  two or more letters that starts with upercase. Add a number equal or bigger than 90')
     }
   };
 
@@ -63,15 +68,16 @@ export const NewProduct = () => {
           width: '100%', height: '30%', display: 'flex',
           flexDirection: 'column', justifyContent: 'center',
         }}>
-          <ProductImage avatar={avatar} />
-          <GetImage avatar={avatar} updateAvatar={updateAvatar} />
+          <ProductImage image={image} />
+          {/* <GetImage image={image} updateImage={updateImage} /> */}
+          <GetImage image={image} updateImage={updateImage} />
         </div>
         <Input
           type={'text'}
           id={'name'}
           value={name}
           onChange={onInputChange}
-          label={'Instrument Name'}
+          label={'Name'}
           error={''}
           name={'name'}
         />

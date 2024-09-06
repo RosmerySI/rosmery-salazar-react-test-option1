@@ -5,6 +5,7 @@ import './public.scss';
 
 
 export const Public = ({ auth, setAuth }) => {
+
     return (
         <div id='public-container'>
             <Routes>

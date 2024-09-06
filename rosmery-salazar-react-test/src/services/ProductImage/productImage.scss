@@ -1,5 +1,5 @@
 @import '../../styles/mixins';
-.profile {
+.image{
   height: 40vh;
   display: flex;
   justify-content: center;
@@ -7,10 +7,10 @@
   
 }
 
-.profile__avatar {
+.item__image{
   
   width: 60%;
- 
+  border: 2px solid #{$dark};
   
   background-position: center;
   background-repeat: no-repeat;
