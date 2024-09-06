@@ -1,0 +1,37 @@
+ @import '../../styles/variables';
+
+.get-avatar {
+    display: flex;
+    justify-content: center;   
+  }
+  
+  .get-avatar__label {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background: #{$dark};
+    border-radius: 15px;
+    
+   
+    font-family: sans-serif;
+    font-size: 15px;
+    padding: 10px 20px;
+    color: white;
+  }
+  
+  .get-avatar__upload-field {
+    display: none;
+  }
+  
+  // .get-avatar__preview {
+  //   background-color: #fff;
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   border: 1px solid #ccc;
+  //   height: 50px;
+  //   margin-left: 15px;
+  //   width: 50px;
+  // }

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { InputEmail } from '../../Components/Atoms/LoginItems/InputEmail/InputEmail';
-import { InputPassword } from '../../Components/Atoms/LoginItems/InputPassword/InputPassword';
+import { Input } from '../../Components/Atoms/InputItem/Input.jsx';
 import { modalError, modalInfo, modalSuccess } from '../../utilities/modals';
 import { ErrorsMessages, SubmitValidation, UpdateValue } from '../../utilities/validations';
 import { useNavigate } from 'react-router-dom';
 import  {useStoreUser}  from '../../hooks/useStoreUser.js'
-import './login.scss';
+import '../pagesStyle.scss';
 
 export const Login = () => {
 
@@ -18,8 +17,8 @@ export const Login = () => {
 
     const [errorList, setErrorList] = useState({
         email: { value: false, message: 'The email format is not correct' },
-        password: { value: false, message: 'Maximum twelve characters and at least six characters containing an uppercase letter, a lowercase letter, a number and a special character' },
-        confirmPassword: { value: false, message: 'Maximum twelve characters and at least six characters containing an uppercase letter, a lowercase letter, a number and a special character' }
+        password: { value: false, message: 'Six to twelve characters containing an uppercase letter, a lowercase letter, a number and a special character' },
+        confirmPassword: { value: false, message:'Six to twelve characters containing an uppercase letter, a lowercase letter, a number and a special character' }
     })
 
     const{startLoginWithEmailPassword} = useStoreUser();
@@ -47,28 +46,32 @@ export const Login = () => {
         }
     }
     return (
-        <form id='login-container' onSubmit={handleLogin} >
+        <form className='login-container' onSubmit={handleLogin} >
             <div className='items-container'>
                 <h1 className='greeting-heading'>Hello</h1>
                 <h2 className='greeting-heading'>Log in to your account</h2>
-                <InputEmail
+                <Input
+                    type={'email'}
                     id={'email'}
                     value={inputList.email.value}
                     onChange={(e) => UpdateValue(e, 'email', inputList, setInputList)}
                     error={errorList.email}
 
                 />
-                <InputPassword label={'Password:'}
+                <Input 
+                    type={'password'}
                     id={'password'}
                     value={inputList.password.value}
                     onChange={(e) => UpdateValue(e, 'password', inputList, setInputList)}
+                    label={'Password:'}
                     error={errorList.password}
                 />
-                <InputPassword
-                    label={'Confirm password:'}
+                <Input
+                    type={'password'}
                     id={'confirmPassword'}
                     value={inputList.confirmPassword.value}
                     onChange={(e) => UpdateValue(e, 'confirmPassword', inputList, setInputList)}
+                    label={'Confirm password:'}
                     error={errorList.confirmPassword}
                 />
                 <div id='button-container'>

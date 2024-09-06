@@ -1,0 +1,40 @@
+@import '../../styles/mixins';
+.profile {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  
+}
+
+.profile__avatar {
+  
+  width: 60%;
+ 
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+
+  @include sm {   
+    width: 60%;
+    height: 100%;   
+  }
+
+  @include md {    
+    width: 60%;
+    height: 100%;
+  }
+
+  @include lg {    
+    width: 60%;
+    height: 100%;   
+  }
+
+  @include xl{    
+    width: 60%;
+    height: 100%;   
+  }
+
+}

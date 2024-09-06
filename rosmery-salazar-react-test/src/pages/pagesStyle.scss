@@ -1,6 +1,6 @@
-@import '../../styles/variables';
+@import '../styles/variables';
 
-#login-container{
+.login-container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,4 +46,16 @@ h1.greeting-heading{
     font-weight: bold;
 
     
+}
+
+.new-product-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:#{$primary} ;
+    height: 80vh;
+    width: 60vw;
+    border-radius: 5%;   
+
 }
