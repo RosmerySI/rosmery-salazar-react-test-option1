@@ -25,16 +25,16 @@ export const createData = async (form) => {
     
     }
 };
-export const editData = async () => {  
+export const editData = async (id,form) => {  
     
-    // try {
-    //     const response = await axios.put('/api/product/1');
-    //     console.log(response); 
+    try {
+        const response = await axios.put(`/api/products/${id}`, form);
         
-    // } catch (error) {
-    //     console.log(error)
+        
+    } catch (error) {
+        console.log(error)
     
-    // }
+    }
 };
 export const deleteData = async (id) => {  
     

@@ -9,13 +9,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../../pages/pagesStyle.scss';
 
 export const NewProduct = () => {
-  const { id } = useParams(); 
+
+  const productEdit= JSON.parse(localStorage.getItem('productEdit'));
+
+  const { id } = useParams();
+
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    type: '',
-    price: ''
-  })
+    name: productEdit ? productEdit.title : '',
+    description: productEdit ? productEdit.description : '',
+    price: productEdit ? productEdit.price : 0,
+   })
+   
   const [image, setImage] = useState(() => {
     const savedImage = localStorage.getItem('productImage');
     return savedImage ? savedImage : null;
@@ -25,16 +29,15 @@ export const NewProduct = () => {
     setImage(image);
 
   };
-  const { startAddingNewProduct } = useStore()
+  const { startAddingNewProduct ,startEditingNewProduct} = useStore()
 
   const nameForm = /^[A-Z][a-zA-Z\s!@#$%^&*()-_+=<>?]{1,}$/;
   const descriptionForm = /^[A-Z][a-zA-Z\s!@#$%^&*()-_+=<>?]{1,}$/;
-  const priceForm = /^(9[0-9]|[3-9][0-9]|\d{3,})$/;
 
   const formValidations = {
     name: [(value) => value.match(nameForm), 'Start with upercase letter and have more than one.'],
     description: [(value) => value.match(descriptionForm), 'Start with upercase letter and have more than one.'],
-    price: [(value) => value.match(priceForm), 'Add a number bigger than 90 '],
+    price: [(value) => !isNaN(value) && Number(value) >= 90, 'Add a number bigger than 90'],
   }
   const { name, description, price, onInputChange, nameValid, descriptionValid, priceValid } = useForm(formData, formValidations);
   const navigate = useNavigate()
@@ -45,15 +48,20 @@ export const NewProduct = () => {
 
       const newProductForm = {
         title: name,
-        price: price,
+        price: parseInt(price),
         description: description,        
         image: 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg', 
         category: 'Electronic',
         
       }
       localStorage.setItem("productImage", image)
+      !id?
+      
       startAddingNewProduct(newProductForm, navigate)
-
+      :    
+      startEditingNewProduct(id,newProductForm, navigate)
+      
+ 
     } else {
       modalError('You must complete the form. Add a word with  two or more letters that starts with upercase. Add a number equal or bigger than 90')
     }

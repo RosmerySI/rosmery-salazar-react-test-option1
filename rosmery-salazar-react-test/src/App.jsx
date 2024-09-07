@@ -13,7 +13,9 @@ function App() {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    const authState = JSON.parse(localStorage.getItem('authState'));   
+    
+    const authState = JSON.parse(localStorage.getItem('authState'));  
+
     if (authState && authState.status === 'authenticated') {
       dispatch(onLogin(authState.dataBackend));
     }

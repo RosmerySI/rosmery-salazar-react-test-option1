@@ -18,6 +18,10 @@ export const Columns = () =>{
     localStorage.setItem('productEdit', JSON.stringify(row));   
     navigate(`/newproduct/${row.id}`);
   };
+  const handleDetails = async(row) => { 
+    localStorage.setItem('productDetails', JSON.stringify(row));   
+    navigate(`/details/${row.id}`);
+  };
   
  const columns = [ 
  
@@ -36,7 +40,7 @@ export const Columns = () =>{
         <>
           <IconButton
             color="primary"
-            onClick={() => handleDetails(params.row.id)}
+            onClick={() => handleDetails(params.row)}
           >
             <InfoIcon />
           </IconButton>

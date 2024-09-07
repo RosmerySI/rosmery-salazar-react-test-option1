@@ -4,12 +4,12 @@ import { Login } from '../../pages/Public/Login';
 import './public.scss';
 
 
-export const Public = ({ auth, setAuth }) => {
+export const Public = () => {
 
     return (
         <div id='public-container'>
             <Routes>
-                <Route path='/login' element={<Login auth={auth} setAuth={setAuth} />} />
+                <Route path='/login' element={<Login  />} />
 
                 <Route path='/*' element={<Navigate to={'/login'} />} />
             </Routes>

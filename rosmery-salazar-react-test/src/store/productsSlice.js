@@ -9,7 +9,7 @@ export const productsSlice = createSlice({
         onGettingProducts: ( state, { payload } ) => {
             state.status = 'data';
             state.products=payload;           
-            localStorage.setItem('products', JSON.stringify(state,payload));       
+            localStorage.setItem('products', JSON.stringify(state));       
         },   
         
       

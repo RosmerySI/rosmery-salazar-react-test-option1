@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { modalError } from "../utilities/modals";
 import { onLogin } from "../store/authSlice";
-import { onAddingNewProduct } from "../store/newProductSlice";
-import { createData, readData } from "../utilities/providers";
+import { onAddingNewProduct, onEditingNewProduct } from "../store/newProductSlice";
+import { createData, editData, readData} from "../utilities/providers";
 import { onGettingProducts } from "../store/productsSlice";
 
 
@@ -10,7 +10,7 @@ import { onGettingProducts } from "../store/productsSlice";
 export const useStore = () => {
 
     const { status} = useSelector((state) => state.auth);
-    const { newProduct } = useSelector((state) => state.newProduct);  
+    const { newProduct,newProductEdited } = useSelector((state) => state.newProduct);  
     const { products } = useSelector((state) => state.products);  
   
     const dispatch = useDispatch();
@@ -51,22 +51,33 @@ export const useStore = () => {
         dispatch(onAddingNewProduct(form));
         navigate('/products');
     }
+
+    const startEditingNewProduct = async (id,form, navigate) => {
+        await editData(id,form)
+        dispatch(onEditingNewProduct(form));
+        navigate('/products');
+        localStorage.removeItem('productEdit');
+    }
+
     const startLogout = (setAuth) => {
         dispatch(onLogout());
         localStorage.clear();
         setAuth(false)
     };
+
     return {
         //* Propierties
         status,
         products,
         newProduct,
+        newProductEdited,
 
         //*methods
         startLoginWithEmailPassword,
         startLogout,
         startAddingNewProduct,
         startGettingProducts,
+        startEditingNewProduct
 
     };
 
