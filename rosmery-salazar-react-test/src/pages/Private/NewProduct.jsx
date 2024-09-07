@@ -5,11 +5,11 @@ import { modalError } from '../../utilities/modals';
 import ProductImage from '../../services/ProductImage/ProductImage';
 import GetImage from '../../services/GetImage/GetImage';
 import { useStore } from '../../hooks/useStore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../../pages/pagesStyle.scss';
 
 export const NewProduct = () => {
-
+  const { id } = useParams(); 
   const [formData, setFormData] = useState({
     name: '',
     description: '',

@@ -3,12 +3,12 @@ import { Paper } from '@mui/material';
 import { DataTable, TableSearch, TablePagination } from '../../Components/Atoms/TableItems';
 import { TableHeader } from '../../Components/Atoms/TableItems/TableHeader';
 import { useStore } from '../../hooks/useStore';
-import { columns } from '../../utilities/tableData'
+import { Columns } from '../../utilities/Columns'
 
 export const Products = () => {
 
   const { products, startGettingProducts } = useStore()
-
+  const columns = Columns();
   useEffect(() => {
     startGettingProducts()
   }, []);
@@ -47,7 +47,7 @@ export const Products = () => {
   
   const pageSize = 5;
   const paginatedRows = rows?.slice((page - 1) * pageSize, page * pageSize);  
-  console.log(paginatedRows);
+  
   return (
     <>
       <TableHeader />

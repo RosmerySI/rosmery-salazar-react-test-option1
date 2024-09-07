@@ -9,7 +9,7 @@ export const  Private = ({auth,setAuth}) => {
     <div id='public-container'>
     <Routes>
         <Route path='/product' element={<Products auth={auth} setAuth={setAuth} />} />
-        <Route path='/newproduct' element={<NewProduct auth={auth} setAuth={setAuth} />} />
+        <Route path='/newproduct/:id' element={<NewProduct auth={auth} setAuth={setAuth} />} />
 
         <Route path='/*' element={<Navigate to={'/product'} />} />
     </Routes>
