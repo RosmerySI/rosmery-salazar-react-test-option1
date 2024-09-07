@@ -37,13 +37,13 @@ export const modalInfo = (message) => {
 export const modalCheck = () => {
   return new Promise((resolve) => {
       Swal.fire({
-          title: '¿Estás segur@?',
-          html: `Si eliges Si tu cuenta se borrará`,
+          title: 'Are you sure?',
+          html: `If you choose Yes the product will be deleted`,
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Si'
+          confirmButtonText: 'Yes'
       }).then((result) => {
           resolve(result);
       });

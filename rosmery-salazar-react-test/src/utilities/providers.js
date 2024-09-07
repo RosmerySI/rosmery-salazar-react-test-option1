@@ -18,7 +18,7 @@ export const createData = async (form) => {
     try {
         const response = await axios.post('/api/products',form);
        
-        
+        console.log(response)
         
     } catch (error) {
         console.log(error)
@@ -29,7 +29,7 @@ export const editData = async (id,form) => {
     
     try {
         const response = await axios.put(`/api/products/${id}`, form);
-        
+        console.log(response)
         
     } catch (error) {
         console.log(error)
@@ -40,7 +40,7 @@ export const deleteData = async (id) => {
     
     try {
         const response= await axios.delete(`/api/products/${id}`);
-          
+        console.log(response)  
         readData();
     
       } catch (error) {

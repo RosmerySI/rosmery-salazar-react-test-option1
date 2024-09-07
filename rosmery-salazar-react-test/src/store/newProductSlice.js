@@ -15,7 +15,7 @@ export const newProductSlice = createSlice({
         onEditingNewProduct: ( state, { payload } ) => {
             state.status = 'edited';
             state.newProductEdited=payload;           
-                  
+            localStorage.setItem('newProduct', JSON.stringify(state));    
         },
        
         
