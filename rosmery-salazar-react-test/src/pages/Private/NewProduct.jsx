@@ -16,16 +16,16 @@ export const NewProduct = () => {
     type: '',
     price: ''
   })
-  const [image, setImage] = useState(() => {    
+  const [image, setImage] = useState(() => {
     const savedImage = localStorage.getItem('productImage');
-    return savedImage ? savedImage : null; 
+    return savedImage ? savedImage : null;
   });
 
   const updateImage = (image) => {
     setImage(image);
 
-};
- const{startAddingNewProduct}=useStore()
+  };
+  const { startAddingNewProduct } = useStore()
 
   const nameForm = /^[A-Z][a-zA-Z\s!@#$%^&*()-_+=<>?]{1,}$/;
   const descriptionForm = /^[A-Z][a-zA-Z\s!@#$%^&*()-_+=<>?]{1,}$/;
@@ -37,23 +37,23 @@ export const NewProduct = () => {
     price: [(value) => value.match(priceForm), 'Add a number bigger than 90 '],
   }
   const { name, description, price, onInputChange, nameValid, descriptionValid, priceValid } = useForm(formData, formValidations);
-  const navigate =  useNavigate()
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     console.log(nameValid, descriptionValid, priceValid);
     e.preventDefault();
     if (nameValid === null && descriptionValid === null && priceValid === null) {
 
       const newProductForm = {
-        id:name,
         title: name,
         price: price,
-        description: description,
-        image: image,
+        description: description,        
+        image: 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg', 
         category: 'Electronic',
-      }      
+        
+      }
       localStorage.setItem("productImage", image)
-      startAddingNewProduct(newProductForm,navigate)
-      
+      startAddingNewProduct(newProductForm, navigate)
+
     } else {
       modalError('You must complete the form. Add a word with  two or more letters that starts with upercase. Add a number equal or bigger than 90')
     }

@@ -44,9 +44,6 @@ function GetImage(props) {
   );
 }
 
-// GetImage.propTypes = {
-//   avatar: PropTypes.string.isRequired,
-//   updateAvatar: PropTypes.func.isRequired,
-// };
+
 
 export default GetImage;

@@ -3,20 +3,34 @@ import { Paper } from '@mui/material';
 import { DataTable, TableSearch, TablePagination } from '../../Components/Atoms/TableItems';
 import { TableHeader } from '../../Components/Atoms/TableItems/TableHeader';
 import { useStore } from '../../hooks/useStore';
-import{columns} from '../../utilities/tableData'
+import { columns } from '../../utilities/tableData'
 
 export const Products = () => {
 
-  const {products,startGettingProducts} = useStore()
-
-  const [rows, setRows] = useState(products);
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState('');
-
+  const { products, startGettingProducts } = useStore()
 
   useEffect(() => {
-    startGettingProducts()   
-  }, [rows]);
+    startGettingProducts()
+  }, []);
+   
+  const [rows, setRows] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
+  
+  useEffect(() => {
+    if (Array.isArray(products)) {  
+      const formattedData = products.map((product, index) => ({
+        id: product.id || index,
+        title: product.title,
+        description: product.description,
+        category: product.category,
+        price: product.price,
+      }));
+      setRows(formattedData);
+    } else {
+      setRows([]); 
+    }
+  }, [products]);
 
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
@@ -30,18 +44,18 @@ export const Products = () => {
   const handlePageChange = (event, value) => {
     setPage(value);
   };
-
+  
   const pageSize = 5;
-  // const paginatedRows =rows?.slice((page - 1) * pageSize, page * pageSize);
-
+  const paginatedRows = rows?.slice((page - 1) * pageSize, page * pageSize);  
+  console.log(paginatedRows);
   return (
     <>
       <TableHeader />
       <Paper style={{ padding: '20px', margin: '20px auto', width: '80%' }}>
 
         <TableSearch search={search} handleSearch={handleSearch} />
-
-        <DataTable paginatedRows={rows} columns={columns} pageSize={pageSize} />
+        
+        <DataTable paginatedRows={paginatedRows} columns={columns} pageSize={pageSize} />
 
         <TablePagination rows={rows} pageSize={pageSize} page={page} handlePageChange={handlePageChange} />
       </Paper>

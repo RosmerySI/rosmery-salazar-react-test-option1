@@ -41,13 +41,13 @@ export const useStore = () => {
     
 
     const startGettingProducts = async () => {
-        const results = await readData()        
+        const results = await readData()           
         dispatch(onGettingProducts(results));
        
     }
 
     const startAddingNewProduct = async (form, navigate) => {
-        createData(form)
+        await createData(form)
         dispatch(onAddingNewProduct(form));
         navigate('/products');
     }

@@ -17,6 +17,4 @@ export const newProductSlice = createSlice({
     }
 });
 
-
-// Action creators are generated for each case reducer function
 export const {  onAddingNewProduct } = newProductSlice.actions;
