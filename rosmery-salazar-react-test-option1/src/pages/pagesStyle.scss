@@ -222,3 +222,18 @@ table {
     height: 90vh;
   }
 }
+
+.buttonDisabled{
+  margin:auto;
+  height: 100%;
+  width: 70% ;
+  border-radius: 5px;
+  border-style: none;    
+  background-color: gray ;
+  color: #{$primary};    
+  font-size: 25px;
+  font-weight: bold;
+  cursor: none;
+
+  
+}

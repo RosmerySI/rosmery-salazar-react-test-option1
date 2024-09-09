@@ -5,7 +5,7 @@ import { modalError } from '../../utilities/modals';
 import ProductImage from '../../services/ProductImage/ProductImage';
 import GetImage from '../../services/GetImage/GetImage';
 import { useStore } from '../../hooks/useStore';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import '../../pages/pagesStyle.scss';
 
 export const NewProduct = () => {
@@ -19,10 +19,21 @@ export const NewProduct = () => {
    
   const [image, setImage] = useState();
 
-  const updateImage = (image) => {
-    setImage(image);
+  const [imageUrl, setImageUrl] = useState();
 
-  };
+  const [imageUrlReady, setImageUrlReady] = useState(true);
+
+  const updateUrlImage = (imageUrl) => {
+
+    setImageUrl(imageUrl);
+ 
+   };
+   const updateImage = (image) => {
+    
+     setImage(image);
+     
+ 
+   };
   const { startAddingNewProduct } = useStore()
 
   const nameForm = /^[A-Z][a-zA-Z\s!@#$%^&*()-_+=<>?]{1,}$/;
@@ -47,7 +58,7 @@ export const NewProduct = () => {
         title: name,
         price: parseInt(price),
         description: description,        
-        image: '', 
+        image: savedImage, 
         category: 'Electronic',
         
       }
@@ -70,7 +81,7 @@ export const NewProduct = () => {
           flexDirection: 'column', justifyContent: 'center',
         }}>
           <ProductImage image={image} />          
-          <GetImage image={image} updateImage={updateImage} />
+          <GetImage image={image} updateImage={updateImage} setImageUrlReady={setImageUrlReady}  />
         </div>
         <Input
           type={'text'}
@@ -103,7 +114,15 @@ export const NewProduct = () => {
 
         <div className='button-container'>
           <button className='buttonBack' onClick={()=>navigate('/products')}> Back </button>
-          <button type='submit' className='button'> Submit </button>
+          <button 
+          type='submit' 
+          disabled={!imageUrlReady} 
+          className={imageUrlReady?'button':'buttonDisabled'}
+          title={imageUrlReady?'':'The button will be enable when the image is ready'}
+          
+          >
+            {imageUrlReady? 'Submit' : 'Disable'}
+          </button>
         </div>
       </div>
     </form>
