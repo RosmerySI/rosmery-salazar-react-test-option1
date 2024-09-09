@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './getImage.scss';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Firebase Storage methods
 import { storage } from '../../firebase'; // Import the storage service from Firebase config
-import {  modalInfo } from '../../utilities/modals';
+import {  modalError, modalInfo } from '../../utilities/modals';
 
 
 function GetImage(props) {
@@ -36,7 +36,8 @@ function GetImage(props) {
         localStorage.setItem('productImage', downloadUrl);      
         props.updateUrlImage(downloadUrl);
       } catch (error) {
-        console.error('Error al subir la imagen a Firebase:', error);
+        console.log(error);
+        modalError('Error try again in afew seconds:', error);
       } finally {
         setUploading(false);
         props.setImageUrlReady(true)
