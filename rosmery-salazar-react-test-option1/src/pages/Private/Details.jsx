@@ -15,9 +15,20 @@ export const Details = () => {
     const navigate= useNavigate()
 
     useEffect(() => {
-        const item = products?.find(item => item.id === productDetails.id);
-        setSelectedItem(item);
-    }, [products, productDetails.id]);
+      if (!productDetails || !productDetails.id) {
+        console.error("No product details found in localStorage");
+        return;
+      }
+  
+      if (Array.isArray(products)) {
+        const item = products.find((item) => item.id === productDetails.id);
+        setSelectedItem(item || null); // Set selectedItem or null if no item found
+      }
+    }, [products, productDetails]);
+    
+    if (!selectedItem && productDetails && products.length > 0) {
+      return <h2>Producto no encontrado</h2>;
+    }
 
     return (
         <>

@@ -31,7 +31,7 @@ export const Products = () => {
   
 
   return (
-    <div className='produts-container'>
+    <div className='products-container'>
       <ProductsHeader/>
       <SearchBar/>
       <Table filteredProducts={filteredProducts} currentPage={currentPage} setCurrentPage={setCurrentPage} />
