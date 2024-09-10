@@ -1,4 +1,5 @@
 import axios from "axios";
+import { modalSuccess } from "./modals";
 
 export const readProducts = async () => {  
     
@@ -38,11 +39,12 @@ export const createData = async (form) => {
     
     }
 };
-export const editData = async (id,form) => {  
-    
+export const editData = async (id,form,user) => {  
+    const url=user? `/api/users/${id}`:`/api/products/${id}`
     try {
-        const response = await axios.put(`/api/products/${id}`, form);
+        const response = await axios.put(url, form);
         console.log(response)
+        modalSuccess('Successful')
         
     } catch (error) {
         console.log(error)

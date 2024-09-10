@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useStore } from '../../hooks/useStore';
+import { useServices } from '../../hooks/useServices';
 import { Table } from '../../Components/Molecules/Table';
 import { ProductsHeader } from '../../Components/Molecules/ProductsHeader';
 import { SearchBar } from '../../Components/Atoms/SearchBar';
@@ -13,7 +13,7 @@ export const Products = () => {
   
  
 
-  const { products, startGettingProducts } = useStore()
+  const { products, startGettingProducts } = useServices()
   
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const Products = () => {
 
 
   useEffect(() => {
-    if (products.length > 0) {
+    if (products?.length > 0) {
       setRows(products);
       setFilteredProducts(products);
     }
@@ -33,7 +33,7 @@ export const Products = () => {
   return (
     <div className='products-container'>
       <ProductsHeader/>
-      <SearchBar/>
+      <SearchBar rows={rows} setFilteredProducts={setFilteredProducts}/>
       <Table filteredProducts={filteredProducts} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );

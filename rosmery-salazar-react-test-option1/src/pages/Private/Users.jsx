@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useStore } from '../../hooks/useStore';
+import { useServices } from '../../hooks/useServices';
 import { useNavigate } from 'react-router-dom';
 import editIcon from '../../assets/images/edit.png'
+import { editData } from '../../utilities/providers';
 
 export const Users = () => {
   const [usersTable, setUsersTable] = useState([]);
   const [editRowId, setEditRowId] = useState(null); 
   const [editedUser, setEditedUser] = useState(null); 
   const [emailError, setEmailError] = useState(''); 
-  const { users, startGettingUsers } = useStore();
+  const { users, startGettingUsers } = useServices();
 
   useEffect(() => {
     startGettingUsers();
@@ -22,7 +23,6 @@ export const Users = () => {
 
   const navigate = useNavigate();
 
-  // Función para manejar el cambio de inputs en la fila editada
   const handleInputChange = (e, field, subfield) => {
     const { name, value } = e.target;
     setEditedUser({
@@ -43,7 +43,7 @@ export const Users = () => {
     }
   };
 
-  // Función para guardar los cambios realizados en la fila
+  
   const handleSaveClick = (id) => {
     if (emailError) {
       alert("Please provide a valid email before saving.");
@@ -52,22 +52,26 @@ export const Users = () => {
 
     const updatedUsers = usersTable.map((user) =>
       user.id === id ? editedUser : user
+
     );
-    setUsersTable(updatedUsers); // Actualizamos los usuarios
-    setEditRowId(null); // Salimos del modo de edición
+    setUsersTable(updatedUsers);
+    setEditRowId(null); 
+    editData(editedUser.id,editedUser,'user')
+    
   };
 
-  // Función para iniciar la edición de una fila
+  
   const handleEditClick = (user) => {
-    setEditRowId(user.id); // Activamos la edición para la fila correspondiente
-    setEditedUser(user); // Prellenamos el estado con los datos del usuario seleccionado
-    setEmailError(''); // Reseteamos cualquier error anterior
+    setEditRowId(user.id); 
+    setEditedUser(user);
+    setEmailError(''); 
+    
   };
 
-  // Función para cancelar la edición de una fila
+
   const handleCancelClick = () => {
-    setEditRowId(null); // Salimos del modo de edición
-    setEmailError(''); // Limpiar el estado del error de email
+    setEditRowId(null); 
+    setEmailError(''); 
   };
 
   return (
@@ -101,9 +105,7 @@ export const Users = () => {
               <th>Phone</th>
               <th>City</th>
               <th>Street</th>
-              <th>Zipcode</th>
-              <th>Latitude</th>
-              <th>Longitude</th>
+              <th>Zipcode</th>                           
               <th>Actions</th>
             </tr>
           </thead>
@@ -210,34 +212,8 @@ export const Users = () => {
                     user.address.zipcode
                   )}
                 </td>
-                <td>
-                  {editRowId === user.id ? (
-                    <input
-                      type="text"
-                      name="lat"
-                      value={editedUser.address.geolocation.lat}
-                      onChange={(e) =>
-                        handleInputChange(e, 'address', 'geolocation', 'lat')
-                      }
-                    />
-                  ) : (
-                    user.address.geolocation.lat
-                  )}
-                </td>
-                <td>
-                  {editRowId === user.id ? (
-                    <input
-                      type="text"
-                      name="long"
-                      value={editedUser.address.geolocation.long}
-                      onChange={(e) =>
-                        handleInputChange(e, 'address', 'geolocation', 'long')
-                      }
-                    />
-                  ) : (
-                    user.address.geolocation.long
-                  )}
-                </td>
+                
+               
                 <td>
                   {editRowId === user.id ? (
                     <div className='iconContainer'>

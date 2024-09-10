@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useServices } from '../../hooks/useServices';
 
 export const ProductsHeader = () => {
 
@@ -8,10 +9,19 @@ export const ProductsHeader = () => {
   const handleNewProduct = () => {
     navigate('/products/create');
   };
+  const {startLogout} = useServices()
+  const handleLogout = () =>{
+    startLogout()
+  }
 
   return (
     <div className='product-header-container'>
+      
+      <div style={{display:'flex',flexDirection:'rows'}}>
+        <button onClick={handleLogout} className='button' 
+        style={{height:'40px',marginRight:'5px', fontSize:'16px'}}>Log Out</button>
         <h1>Products</h1>
+        </div>
         <button
           style={{
             height: '50px',

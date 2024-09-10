@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const SearchBar = () => {
+export const SearchBar = ({rows, setFilteredProducts}) => {
 
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -19,7 +19,7 @@ export const SearchBar = () => {
         <input
           className='input'
           type="text"
-          placeholder="Search product..."
+          placeholder="Search by name"
           onChange={handleSearch}
           value={searchTerm}
         />
